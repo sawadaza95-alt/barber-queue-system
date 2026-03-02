@@ -27,17 +27,17 @@ Route::middleware('auth')->group(function () {
 });
 
 // ==================== บริการ (Services) - สำหรับแอดมิน ====================
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', 'App\Http\Middleware\AdminMiddleware'])->group(function () {
     Route::resource('services', ServiceController::class);
 });
 
 // ==================== ตารางเวลา (Schedules) - สำหรับแอดมิน ====================
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', 'App\Http\Middleware\AdminMiddleware'])->group(function () {
     Route::resource('schedules', ScheduleController::class);
 });
 
 // ==================== แอดมิน Dashboard ====================
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth', 'App\Http\Middleware\AdminMiddleware'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/queue', [AdminController::class, 'queue'])->name('admin.queue');
     Route::post('/call-queue', [AdminController::class, 'callQueue'])->name('admin.call-queue');

@@ -22,7 +22,7 @@
                     <td><strong>#{{ $call->queue_number }}</strong></td>
                     <td>{{ $call->booking->customer_name }}</td>
                     <td>{{ $call->booking->service->name }}</td>
-                    <td>{{ $call->called_at->format('H:i:s') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($call->called_at)->format('H:i:s') }}</td>
                     <td>
                         @if ($call->status === 'waiting')
                             <span class="badge bg-warning">รอการเรียก</span>
